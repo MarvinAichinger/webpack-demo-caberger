@@ -1,0 +1,79 @@
+{{ partial "header.html" . }}
+
+<div class="container">
+    <article class="post-container">
+        {{ partial "page-header.html" . }}
+
+        {{ partial "page-content.html" . }}
+    </article>
+</div>
+
+<script>
+</script>
+
+<div class="container">
+    <table id="the-table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </table>
+</div>
+
+<!-- <div class="container">
+    {{ $link := urls.Parse .Permalink }}
+    {{ $string := $link.Host }}
+    {{ $a := printf "http://" }}
+    {{ $b := printf "/api/user" }}
+    {{ $request := printf "%s" $b | printf "%s%s" $string | printf "%s%s" $a | printf "%s" }}
+    {{ $response := resources.GetRemote "https://student.cloud.htl-leonding.ac.at/m.aichinger/api/user" }}
+
+    {{ if $response.Err }}
+        <p>Error</p>
+    {{ else }}
+        {{ $user := unmarshal $response.Content }}
+        {{ range $user }}
+            <table id="user-table">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>{{ .id }}</td>
+                    <td>{{ .name }}</td>
+                </tr>
+            </table>
+        {{ end }}
+    {{ end }}        
+
+</div> -->
+
+<script>
+    //request json data from /api/user and fill table
+    var request = new XMLHttpRequest();
+    request.open('GET', './../../api/user', true);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            var table = document.getElementById("the-table");
+            for (var i = 0; i < data.length; i++) {
+                var row = table.insertRow(i + 1);
+                var name = row.insertCell(0);
+                var email = row.insertCell(1);
+                name.innerHTML = data[i].id;
+                email.innerHTML = data[i].name;
+            }
+        } else {
+            console.log("error");
+        }
+    };
+    request.send();
+</script>
+
+<style>
+    th {
+        width: 50%;
+    }
+</style>
+
+{{ partial "footer.html" . }}

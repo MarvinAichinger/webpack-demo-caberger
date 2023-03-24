@@ -1,0 +1,30 @@
+name: Deploy Hugo to GithubPages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install hugo and build
+        run: |
+            sudo apt install hugo
+            cd frontend
+            cd hugo
+            cd hugo
+            hugo
+      - name: Deploy to external repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAGES_ACCESS }}
+
+        with:
+          # GitHub Action output files
+          source-directory: frontend/hugo/hugo/public
+          destination-github-username: MarvinAichinger
+          destination-repository-name: MarvinAichinger.github.io
+          user-email: marvin.aichinger@outlook.com

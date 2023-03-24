@@ -1,0 +1,27 @@
+baseurl = "/m.aichinger"
+title = "Marvini's Blog 🤌"
+theme = "ghostwriter"
+canonifyURLs = true
+
+[Params]
+    mainSections = ["post"]
+    intro = true
+    headline = "Marvini's Blog 🤌"
+    description = "Welcome to the legendary blog of Marvini"
+    github = "https://github.com/MarvinAichinger"
+    email = "aichm0782@gmail.com"
+    opengraph = true
+    dateFormat = "Mon, Jan 2, 2006"
+
+[Permalinks]
+    post = ":filename/"
+
+[menu]
+    [[menu.main]]
+        name = "Blog"
+        url = "/"
+        weight = 1
+    [[menu.main]]
+        name = "API Data for Task"
+        url = "/page/api/"
+        weight = 2

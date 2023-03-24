@@ -11,14 +11,14 @@ spec:
     - host: student.cloud.htl-leonding.ac.at
       http:
         paths:
-          - path: /caberger
+          - path: /m.aichinger
             pathType: Prefix
             backend:
               service:
                 name: nginx
                 port:
                   number: 80
-          - path: /caberger/(.*)$
+          - path: /m.aichinger/(.*)$
             pathType: Prefix
             backend:
               service:
