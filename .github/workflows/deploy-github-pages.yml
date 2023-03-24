@@ -28,3 +28,4 @@ jobs:
           destination-github-username: MarvinAichinger
           destination-repository-name: MarvinAichinger.github.io
           user-email: marvin.aichinger@outlook.com
+          target-branch: master
